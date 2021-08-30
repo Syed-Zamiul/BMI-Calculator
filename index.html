@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <title>BMI Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <h1>BMI Calculator</h1>
+            </div>
+            <div class="card-body">
+                <div class="container w-50 my-auto">
+                    <form onsubmit="return false">
+                        <div class="mb-3">
+                            <label>Enter yor weight in KG</label>
+                            <input type="text" name="" class="form-control" required id="weight">
+                        </div>
+                        <div class="mb-3">
+                            <label>Enter yor hight in Ft</label>
+                            <input type="text" name="" class="form-control" required id="hight">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" onclick="getbmivalue()">Check BMI</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <h3 id="result"></h3>
+                <h4 id="comment"><strong></strong></h4>
+            </div>
+        </div>
+    </div>
+
+    <!--------Javascript program starts from hear-------------->
+
+    <script>
+        var start = "Your BMI value is "
+
+        function getbmivalue() {
+            var weight = document.getElementById('weight').value;
+            var hight = document.getElementById('hight').value;
+
+
+            hight = hight * 12;
+            hight = hight * 0.025;
+
+            var bmivalue = weight / (hight * hight);
+
+            bmivalue = Math.round(bmivalue)
+
+            document.getElementById('result').innerHTML = start + bmivalue;
+
+            var write;
+            if (bmivalue < 18.5) {
+                write = "Underweight! Low body weight, you need to gain weight by eating moderately.";
+            } else if (bmivalue < 24.9) {
+                write = "Normal Weight! Standard of good health.";
+            } else if (bmivalue < 29.9) {
+                write = "Overweight! Exercise needs to reduce overweight."
+            } else if (bmivalue < 34.9) {
+                write = "Obesity class I ! It is necessary to choose food and need exercise."
+            } else if (bmivalue < 39.9) {
+                write = "Obesity class II ! Moderate diet and exercise are required."
+            } else if (bmivalue > 39.9) {
+                write = "Obesity class III ! Fear of death . Need to consult a doctor."
+            }
+            document.getElementById('comment').innerHTML = write;
+        }
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
